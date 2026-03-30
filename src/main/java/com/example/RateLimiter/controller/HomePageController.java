@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomePageController {
     @Autowired
-    @Qualifier("slidingWindow")
+    @Qualifier("fixedWindow")
     RateLimiter rateLimiter;
 
     @RequestMapping(value = "/access", method = RequestMethod.GET)
