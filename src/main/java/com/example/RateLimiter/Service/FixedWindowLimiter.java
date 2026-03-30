@@ -7,22 +7,22 @@ import org.springframework.stereotype.Service;
 import java.time.Duration;
 
 @Service("fixedWindow")
-public class FixedWindowLimiter implements RateLimiter{
-    static private int LIMIT=3;
+public class FixedWindowLimiter implements RateLimiter {
+    static final int LIMIT = 3;
     @Autowired
     RedisConfig redisConfig;
+
     @Override
     public boolean isAccessGranted(String userId) {
-        Integer val=redisConfig.redisTemplate().opsForValue().get(userId);
-        if(val==null){
-            redisConfig.redisTemplate().opsForValue().set(userId,1, Duration.ofSeconds(120));
+        Integer val = redisConfig.redisTemplate().opsForValue().get(userId);
+        if (val == null) {
+            redisConfig.redisTemplate().opsForValue().set(userId, 1, Duration.ofSeconds(120));
             return true;
-        }
-        else{
-            if(val<LIMIT){
+        } else {
+            if (val < LIMIT) {
                 redisConfig.redisTemplate().opsForValue().increment(userId);
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }
