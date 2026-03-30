@@ -1,6 +1,6 @@
 package com.example.RateLimiter.controller;
 
-import com.example.RateLimiter.Service.RateLimit;
+import com.example.RateLimiter.Service.RateLimiter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomePageController {
     @Autowired
-    RateLimit rateLimit;
+    RateLimiter rateLimiter;
     @RequestMapping(value = "/access",method = RequestMethod.GET)
     public boolean getRequestAccess(@RequestParam(name="userId") String userId){
-        return rateLimit.isAccessGranted(userId);
+        return rateLimiter.isAccessGranted(userId);
     }
 }

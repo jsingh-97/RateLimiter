@@ -1,8 +1,5 @@
 package com.example.RateLimiter.Service;
 
-import org.springframework.stereotype.Service;
-
-@Service
-public interface RateLimit {
+public interface RateLimiter {
     public boolean isAccessGranted(String userId);
 }
