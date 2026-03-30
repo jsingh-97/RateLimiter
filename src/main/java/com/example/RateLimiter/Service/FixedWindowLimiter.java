@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.time.Duration;
 
 @Service("fixedWindow")
-public class FixedWindow implements RateLimiter{
+public class FixedWindowLimiter implements RateLimiter{
     static private int LIMIT=3;
     @Autowired
     RedisConfig redisConfig;
